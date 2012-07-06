@@ -11,7 +11,7 @@
   <div class="container">
     <div id="login-box">
       <% if current_user -%>
-        <p>Hello <%= current_user.email %></p>
+        <p>Hello <%= current_user.email %>, <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></p>
       <% end -%>
     </div>
 

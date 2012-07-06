@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where(:user_id => params[:user_id])
+    @posts = current_user.posts
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,17 +36,17 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    @post = current_user.posts.new(params[:post])
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to params[:return_to] ? params[:return_to] : @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to session[:return_to] ? session[:return_to] : @post, notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
@@ -58,7 +58,7 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.json
   def update
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
@@ -74,7 +74,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
     @post.destroy
 
     respond_to do |format|
@@ -84,7 +84,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.where("body LIKE '#{params[:post][:query]}'")
+    @posts = Post.where(["body LIKE '?'", params[:post][:query]])
     render :action => :index
   end
 end
