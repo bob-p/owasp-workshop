@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h1>Listing posts</h1>
+</div>
+
+<%= form_for :post, :url => search_posts_path, :method => :get, :html => {:class => 'form-search'} do |f| %>
+  <%= f.text_field :query, :class => 'search-query' %>
+  <%= submit_tag "Search", :class => "btn" %>
+<% end %>
+
+<h2>Posts</h2>
+<table class="table table-striped">
+  <tr>
+    <th>Title</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.title.html_safe %></td>
+    <td><%= link_to 'Show', post %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Post', new_post_path, :class => 'btn' %>

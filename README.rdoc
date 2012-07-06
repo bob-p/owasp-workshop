@@ -1,0 +1,35 @@
+= Welcome
+
+This is a very basic 'blog like' rails application, it has been designed with a bunch of
+security holes which we will look at fixing.
+
+== To run:
+This requires the following installed to run:
+
+* Ruby (version 1.9)
+* Rubygems
+* Bundler
+
+    bundle install
+
+    bundle exec rake db:migrate
+
+    bundle exec rails server
+
+Visit http://localhost:3000
+
+== Task
+
+This code has the following vulnerabilities:
+
+* SQL injection
+* XSS
+* Mass assignment
+* Direct object reference
+* CSRF
+* Redirection
+
+As well as soon others - please update to fix!
+
+N.b. its worth noting that Rails helps protect against a lot of these 'out of the box'.
+As such I have reverted some of protection that comes as default for illustrative purposes.
