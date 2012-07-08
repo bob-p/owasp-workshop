@@ -9,3 +9,8 @@ one:
   title: hello
   body: First post
   user_id: 1
+two:
+  id: 2
+  title: hello
+  body: Second post
+  user_id: 2
