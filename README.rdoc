@@ -33,3 +33,8 @@ As well as soon others - please update to fix!
 
 N.b. its worth noting that Rails helps protect against a lot of these 'out of the box'.
 As such I have reverted some of protection that comes as default for illustrative purposes.
+
+
+== Solution
+
+There is a now a branch called 'secured' which has the solution if you are interested - no cheating!
